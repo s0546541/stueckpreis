@@ -1,4 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">StueckpreisRechner_neu</string>
-    <string name="action_settings">Settings</string>
+
+    <string name="app_name">StueckpreisRechner</string>
+    <string name="action_settings">Einstellungen</string>
+
+    <string-array name="einheiten_array">
+        <item>kg</item>
+        <item>g</item>
+        <item>l</item>
+        <item>ml</item>
+        <item>Stück</item>
+        <item>Tüten</item>
+    </string-array>
 </resources>

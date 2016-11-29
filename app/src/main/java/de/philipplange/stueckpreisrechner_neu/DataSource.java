@@ -74,4 +74,9 @@ public class DataSource {
         cursor.close();
         return zutatenListe;
     }
+
+
+    public void deleteAll() {
+        database.delete(DbHelper.TABLE_ZUTATEN, null, null);
+    }
 }

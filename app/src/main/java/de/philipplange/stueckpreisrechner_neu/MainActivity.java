@@ -1,14 +1,13 @@
 package de.philipplange.stueckpreisrechner_neu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -19,7 +18,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<Zutat> zutatenListe;
-    private ListView listView;
     private DataSource dataSource;
 
     private ListAdapter adapter;
@@ -32,9 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
         zutatenListe = new ArrayList<>();
-        listView = (ListView) findViewById(R.id.listView);
+        ListView listView = (ListView) findViewById(R.id.listView);
 
         dataSource = new DataSource(this);
 
@@ -42,22 +39,28 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Zutat hinzugefuegt", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Zutat hinzugefuegt", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
 
-                dataSource.open();
+                /*dataSource.open();
                 dataSource.addZutat(new Zutat("Butter", 250, Einheit.G, 0.99));
                 ArrayList<Zutat> neueListe = (ArrayList<Zutat>) dataSource.getAllZutaten();
                 zutatenListe.clear();
                 zutatenListe.addAll(neueListe);
                 dataSource.close();
 
-                ((ArrayAdapter<Zutat>)adapter).notifyDataSetChanged();
+                ((ArrayAdapter<Zutat>)adapter).notifyDataSetChanged();*/
+
+                Intent intent = new Intent(MainActivity.this, NeueZutatDialog.class);
+                startActivity(intent);
+
+
+
+
             }
         });
 
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         zutatenListe.addAll(neueListe);
         dataSource.close();
 
-        ((ArrayAdapter<Zutat>)adapter).notifyDataSetChanged();
+        ((ArrayAdapter<Zutat>) adapter).notifyDataSetChanged();
 
 
     }
@@ -93,4 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
