@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">StueckpreisRechner</string>
-    <string name="action_settings">Einstellungen</string>
+    <string name="action_deleteall">alles löschen</string>
 
     <string-array name="einheiten_array">
         <item>kg</item>

@@ -64,13 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        dataSource.open();
-        ArrayList<Zutat> neueListe = (ArrayList<Zutat>) dataSource.getAllZutaten();
-        zutatenListe.clear();
-        zutatenListe.addAll(neueListe);
-        dataSource.close();
-
-        ((ArrayAdapter<Zutat>) adapter).notifyDataSetChanged();
+        aktualisiereListe();
 
 
     }
@@ -90,7 +84,11 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_deleteall) {
+            dataSource.open();
+            dataSource.deleteAll();
+            dataSource.close();
+            aktualisiereListe();
             return true;
         }
 
@@ -98,4 +96,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void aktualisiereListe() {
+        dataSource.open();
+        ArrayList<Zutat> neueListe = (ArrayList<Zutat>) dataSource.getAllZutaten();
+        zutatenListe.clear();
+        zutatenListe.addAll(neueListe);
+        dataSource.close();
+
+        ((ArrayAdapter<Zutat>) adapter).notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        aktualisiereListe();
+    }
 }
